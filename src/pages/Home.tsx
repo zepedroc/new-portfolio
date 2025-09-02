@@ -7,53 +7,52 @@ import Astronaut3D from "@/components/Astronaut3D";
 
 const Home = () => {
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-16 grid-pattern">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 animate-fade-in-up">
-              <div className="space-y-4">
-                <h1 className="text-6xl md:text-7xl font-bold text-gradient animate-glow-pulse">
+      <section className="relative py-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-12 animate-fade-in-up">
+              <div className="space-y-6">
+                <h1 className="text-7xl md:text-8xl font-thin text-gradient tracking-tighter">
                   José Mota
                 </h1>
-                <p className="text-xl text-muted-foreground">
-                  Web Developer & Tech Enthusiast
-                </p>
+                <div className="space-y-2">
+                  <p className="text-xl text-muted-foreground font-light">
+                    Web Developer
+                  </p>
+                  <div className="h-px w-24 bg-foreground"></div>
+                </div>
               </div>
               
-              <div className="space-y-4">
-                <p className="text-lg text-foreground/90 leading-relaxed">
+              <div className="space-y-6 max-w-md">
+                <p className="text-lg text-foreground/90 font-light leading-relaxed">
                   Passionate about creating the future through{" "}
-                  <span className="text-primary font-semibold">Software</span>,{" "}
-                  <span className="text-accent font-semibold">AI</span>, and{" "}
-                  <span className="text-neon-green font-semibold">Robotics</span>.
-                </p>
-                <p className="text-muted-foreground">
-                  Building digital experiences that push the boundaries of what's possible.
+                  <span className="text-primary font-normal">Software</span>,{" "}
+                  <span className="text-foreground font-normal">AI</span>, and{" "}
+                  <span className="text-foreground font-normal">Robotics</span>.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex gap-6">
                 <Link to="/experience">
-                  <Button className="bg-primary hover:bg-primary/90 neon-glow group">
-                    View My Work
-                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                  <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-light px-8 py-3 group">
+                    View Work
+                    <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
-                <Link to="/chat">
-                  <Button variant="outline" className="border-primary/50 hover:bg-primary/10">
-                    Chat with Me
+                <Link to="/contact">
+                  <Button variant="outline" className="border-border hover:bg-secondary font-light px-8 py-3">
+                    Contact
                   </Button>
                 </Link>
               </div>
             </div>
 
-            <div className="relative h-96 lg:h-[500px] animate-slide-in-right">
-              <div className="absolute inset-0 bg-gradient-radial from-primary/20 via-transparent to-transparent rounded-full blur-3xl"></div>
+            <div className="relative h-96 lg:h-[600px] animate-slide-in-right">
               <Suspense fallback={
                 <div className="w-full h-full flex items-center justify-center">
-                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
+                  <div className="animate-minimal-pulse text-muted-foreground">Loading...</div>
                 </div>
               }>
                 <Astronaut3D />
@@ -63,46 +62,44 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-20 bg-gradient-to-b from-transparent to-card/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gradient mb-4">
-              Areas of Expertise
+      {/* Expertise Section */}
+      <section className="py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-thin text-gradient mb-6 tracking-tight">
+              Expertise
             </h2>
-            <p className="text-muted-foreground text-lg">
-              Exploring the intersection of technology and innovation
-            </p>
+            <div className="h-px w-16 bg-foreground mx-auto"></div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="glass-card p-8 text-center hover:neon-glow transition-all duration-300 group">
-              <div className="mb-6">
-                <Code className="w-16 h-16 mx-auto text-primary group-hover:scale-110 transition-transform" />
+          <div className="grid md:grid-cols-3 gap-12">
+            <Card className="glass-card p-12 text-center hover:minimal-glow transition-all duration-500 group border-minimal">
+              <div className="mb-8">
+                <Code className="w-12 h-12 mx-auto text-primary group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Software Development</h3>
-              <p className="text-muted-foreground">
-                Building scalable web applications with modern technologies and best practices.
+              <h3 className="text-xl font-light mb-6 text-foreground tracking-wide">Software Development</h3>
+              <p className="text-muted-foreground font-light leading-relaxed">
+                Building scalable applications with modern technologies and architectural patterns.
               </p>
             </Card>
 
-            <Card className="glass-card p-8 text-center hover:purple-glow transition-all duration-300 group">
-              <div className="mb-6">
-                <Brain className="w-16 h-16 mx-auto text-accent group-hover:scale-110 transition-transform" />
+            <Card className="glass-card p-12 text-center hover:minimal-glow transition-all duration-500 group border-minimal">
+              <div className="mb-8">
+                <Brain className="w-12 h-12 mx-auto text-foreground group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Artificial Intelligence</h3>
-              <p className="text-muted-foreground">
-                Leveraging AI and machine learning to solve complex problems and enhance user experiences.
+              <h3 className="text-xl font-light mb-6 text-foreground tracking-wide">Artificial Intelligence</h3>
+              <p className="text-muted-foreground font-light leading-relaxed">
+                Leveraging machine learning to solve complex problems and enhance user experiences.
               </p>
             </Card>
 
-            <Card className="glass-card p-8 text-center hover:text-neon-green hover:shadow-[0_0_30px_hsl(120_100%_50%_/_0.5)] transition-all duration-300 group">
-              <div className="mb-6">
-                <Cpu className="w-16 h-16 mx-auto text-neon-green group-hover:scale-110 transition-transform" />
+            <Card className="glass-card p-12 text-center hover:minimal-glow transition-all duration-500 group border-minimal">
+              <div className="mb-8">
+                <Cpu className="w-12 h-12 mx-auto text-foreground group-hover:scale-105 transition-transform duration-300" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">Robotics</h3>
-              <p className="text-muted-foreground">
-                Designing and programming robotic systems that bridge the physical and digital worlds.
+              <h3 className="text-xl font-light mb-6 text-foreground tracking-wide">Robotics</h3>
+              <p className="text-muted-foreground font-light leading-relaxed">
+                Designing systems that bridge the physical and digital worlds.
               </p>
             </Card>
           </div>
@@ -110,24 +107,20 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <div className="glass-card p-12 border-gradient">
-            <h2 className="text-3xl font-bold text-gradient mb-6">
-              Ready to Build the Future Together?
+      <section className="py-32">
+        <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
+          <div className="glass-card p-16 border-minimal scan-line">
+            <h2 className="text-3xl font-thin text-gradient mb-8 tracking-tight">
+              Let's Build Something
             </h2>
-            <p className="text-muted-foreground text-lg mb-8">
-              Let's discuss your next project and explore how we can bring your ideas to life.
+            <p className="text-muted-foreground text-lg mb-12 font-light max-w-2xl mx-auto leading-relaxed">
+              Interested in collaborating on your next project? 
+              Let's discuss how we can bring your ideas to life.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex justify-center gap-6">
               <Link to="/contact">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 neon-glow">
+                <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 font-light px-10 py-4">
                   Get In Touch
-                </Button>
-              </Link>
-              <Link to="/chat">
-                <Button size="lg" variant="outline" className="border-accent/50 hover:bg-accent/10">
-                  Start a Conversation
                 </Button>
               </Link>
             </div>
