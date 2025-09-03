@@ -11,7 +11,7 @@ const Home = () => {
       <section className="relative py-32 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="space-y-12 animate-fade-in-up">
+            <div className="space-y-12 animate-fade-in-up lg:text-left text-center mx-auto lg:mx-0">
               <div className="space-y-6">
                 <h1 className="text-7xl md:text-8xl font-thin text-gradient tracking-tighter">
                   José Mota
@@ -20,7 +20,7 @@ const Home = () => {
                   <p className="text-xl text-muted-foreground font-light">
                     Web Developer
                   </p>
-                  <div className="h-px w-24 bg-foreground"></div>
+                  <div className="h-px w-24 bg-foreground lg:mx-0 mx-auto"></div>
                 </div>
               </div>
               
@@ -33,7 +33,7 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="flex gap-6">
+              <div className="flex gap-6 lg:justify-start justify-center">
                 <Link to="/experience">
                   <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-light px-8 py-3 group">
                     View Work
