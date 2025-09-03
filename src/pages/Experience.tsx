@@ -6,42 +6,71 @@ import { Calendar, MapPin, ExternalLink, Github } from "lucide-react";
 const Experience = () => {
   const workExperience = [
     {
-      title: "Senior Full Stack Developer",
-      company: "TechNova Solutions",
-      location: "San Francisco, CA",
-      period: "2022 - Present",
-      description: "Leading development of cutting-edge web applications using React, Node.js, and AI integration. Mentoring junior developers and architecting scalable solutions for enterprise clients.",
-      technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker"],
-      achievements: [
-        "Increased application performance by 40% through optimization",
-        "Led team of 5 developers on major client project",
-        "Implemented AI-powered features that improved user engagement by 65%"
-      ]
-    },
-    {
-      title: "Full Stack Developer",
-      company: "InnovateLab",
-      location: "Austin, TX",
-      period: "2020 - 2022",
-      description: "Developed and maintained multiple web applications for startups and mid-size companies. Specialized in modern JavaScript frameworks and cloud deployment.",
-      technologies: ["Vue.js", "Python", "Django", "MongoDB", "GCP", "Kubernetes"],
-      achievements: [
-        "Built and deployed 12+ production applications",
-        "Reduced deployment time by 70% through CI/CD automation",
-        "Collaborated with UX team to improve user satisfaction scores by 45%"
-      ]
-    },
-    {
-      title: "Junior Web Developer",
-      company: "DigitalCraft Agency",
+      title: "JavaScript Developer",
+      company: "Emergn",
       location: "Remote",
-      period: "2019 - 2020",
-      description: "Started my journey building responsive websites and learning modern development practices. Worked on various client projects from concept to deployment.",
-      technologies: ["JavaScript", "HTML5", "CSS3", "PHP", "MySQL", "WordPress"],
+      period: "Jun 2022 - Present",
+      description: "Led a team of engineers in the development and successful launch of cutting-edge learning platforms. Oversaw complete implementation processes, ensuring scalability, performance, and exceptional user experience.",
+      technologies: ["Next.js", "NestJS", "MongoDB", "Playwright", "GraphQL", "DatoCMS", "React.js", "TypeScript", "SASS", "SAPUI5", "Jest", "Cypress", "LlamaIndex"],
       achievements: [
-        "Delivered 25+ client websites on time and under budget",
-        "Improved website loading speeds by average of 35%",
-        "Gained expertise in responsive design and accessibility"
+        "Enhanced Fiori Elements by developing new frontend components for Fiori Apps (Jun 2022 - Jan 2023)",
+        "Developed analytics dashboard and chatbot for Emergn Learning Platform (Jan 2023 - Dec 2023)",
+        "Led team development of Praxis by Emergn learning platform for product managers (Jan 2024 - Present)",
+        "Created integration tests to enhance project reliability",
+        "Optimized and refactored existing code for better performance"
+      ]
+    },
+    {
+      title: "Software Developer",
+      company: "Particle Forward",
+      location: "Remote",
+      period: "May 2022 - Jun 2022",
+      description: "Developed the frontend for União Zoófila website using Contentful as headless CMS. Created reusable components for multiple websites.",
+      technologies: ["JavaScript", "React.js", "TypeScript", "Next.js", "Contentful", "CSS3", "HTML5"],
+      achievements: [
+        "Built complete frontend architecture for União Zoófila website",
+        "Integrated Contentful CMS for dynamic content management",
+        "Developed independent components for reuse across multiple websites"
+      ]
+    },
+    {
+      title: "Frontend Developer",
+      company: "Natixis (via Altran)",
+      location: "Remote",
+      period: "Nov 2020 - Dec 2021",
+      description: "Transformed legacy internal sites into modern ReactJS applications by developing new components using SharePoint Framework for migration to SharePoint.",
+      technologies: ["JavaScript", "React.js", "TypeScript", "SASS", "SharePoint", "CSS3", "HTML5"],
+      achievements: [
+        "Successfully migrated internal sites to SharePoint Framework",
+        "Developed modern ReactJS components replacing legacy systems",
+        "Improved user experience with contemporary web technologies"
+      ]
+    },
+    {
+      title: "Frontend Developer",
+      company: "Celfinet (via Helppier)",
+      location: "Remote",
+      period: "Aug 2019 - Nov 2019",
+      description: "Re-structured GeoMap Platform UI to work with Redux as state manager. Created new components using MaterialUI for improved user interface.",
+      technologies: ["JavaScript", "React.js", "Redux", "SASS", "OpenLayers", "HTML5", "Material-UI"],
+      achievements: [
+        "Refactored entire UI structure to implement Redux state management",
+        "Created new components using MaterialUI design system",
+        "Enhanced geospatial data visualization with OpenLayers integration"
+      ]
+    },
+    {
+      title: "Fullstack Developer",
+      company: "Helppier",
+      location: "Remote",
+      period: "Feb 2018 - Nov 2020",
+      description: "Developed a step-by-step tutorial widget for client websites, enhancing existing features and building new screens. Created complete backend logic for the tutorial system.",
+      technologies: ["JavaScript", "React.js", "Redux", "Node.js", "MongoDB", "MeteorJS", "SASS", "HTML5", "Figma"],
+      achievements: [
+        "Built complete tutorial widget system for client integration",
+        "Developed entire backend architecture and logic",
+        "Enhanced user onboarding experience across multiple client websites",
+        "Created intuitive UI/UX for tutorial creation and management"
       ]
     }
   ];
