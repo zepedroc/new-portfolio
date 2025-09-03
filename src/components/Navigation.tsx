@@ -57,7 +57,7 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 glass-card border-t border-border backdrop-blur-xl">
+          <div className="md:hidden absolute top-16 left-0 right-0 bg-background border-t border-border">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map(({ path, label, icon: Icon }) => (
                 <Link
