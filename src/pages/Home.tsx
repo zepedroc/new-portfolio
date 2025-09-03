@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ArrowRight, Code, Brain, Cpu } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Astronaut3D from "@/components/Astronaut3D";
 
@@ -62,49 +61,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Expertise Section */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl font-thin text-gradient mb-6 tracking-tight">
-              Expertise
-            </h2>
-            <div className="h-px w-16 bg-foreground mx-auto"></div>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-12">
-            <Card className="glass-card p-12 text-center hover:minimal-glow transition-all duration-500 group border-minimal">
-              <div className="mb-8">
-                <Code className="w-12 h-12 mx-auto text-primary group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <h3 className="text-xl font-light mb-6 text-foreground tracking-wide">Software Development</h3>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Building scalable applications with modern technologies and architectural patterns.
-              </p>
-            </Card>
-
-            <Card className="glass-card p-12 text-center hover:minimal-glow transition-all duration-500 group border-minimal">
-              <div className="mb-8">
-                <Brain className="w-12 h-12 mx-auto text-foreground group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <h3 className="text-xl font-light mb-6 text-foreground tracking-wide">Artificial Intelligence</h3>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Leveraging machine learning to solve complex problems and enhance user experiences.
-              </p>
-            </Card>
-
-            <Card className="glass-card p-12 text-center hover:minimal-glow transition-all duration-500 group border-minimal">
-              <div className="mb-8">
-                <Cpu className="w-12 h-12 mx-auto text-foreground group-hover:scale-105 transition-transform duration-300" />
-              </div>
-              <h3 className="text-xl font-light mb-6 text-foreground tracking-wide">Robotics</h3>
-              <p className="text-muted-foreground font-light leading-relaxed">
-                Designing systems that bridge the physical and digital worlds.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-32">
