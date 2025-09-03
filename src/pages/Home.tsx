@@ -40,15 +40,10 @@ const Home = () => {
                     <ArrowRight className="ml-3 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
-                <Link to="/contact">
-                  <Button variant="outline" className="border-border hover:bg-secondary font-light px-8 py-3">
-                    Contact
-                  </Button>
-                </Link>
               </div>
             </div>
 
-            <div className="relative h-96 lg:h-[600px] animate-slide-in-right">
+            <div className="relative h-96 lg:h-[600px] animate-slide-in-right hidden lg:block">
               <Suspense fallback={
                 <div className="w-full h-full flex items-center justify-center">
                   <div className="animate-minimal-pulse text-muted-foreground">Loading...</div>
