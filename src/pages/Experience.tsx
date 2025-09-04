@@ -11,11 +11,12 @@ const Experience = () => {
       location: "Remote",
       period: "Jun 2022 - Present",
       description: "Led a team of engineers in the development and successful launch of cutting-edge learning platforms. Oversaw complete implementation processes, ensuring scalability, performance, and exceptional user experience.",
-      technologies: ["Next.js", "NestJS", "MongoDB", "Playwright", "GraphQL", "DatoCMS", "React.js", "TypeScript", "SASS", "SAPUI5", "Jest", "Cypress", "LlamaIndex"],
+      technologies: ["Next.js", "NestJS", "MongoDB", "Playwright", "GraphQL", "DatoCMS", "React.js", "TypeScript", "SASS", "SAPUI5", "Jest", "Cypress", "LlamaIndex", "SQL", "Cursor", "SQL Server Management Studio"],
       achievements: [
         "Enhanced Fiori Elements by developing new frontend components for Fiori Apps (Jun 2022 - Jan 2023)",
         "Developed analytics dashboard and chatbot for Emergn Learning Platform (Jan 2023 - Dec 2023)",
         "Led team development of Praxis by Emergn learning platform for product managers (Jan 2024 - Present)",
+        "Contributing to Pulse development - internal web platform for employee management processes (Jul 2025 - Present)",
         "Created integration tests to enhance project reliability",
         "Optimized and refactored existing code for better performance"
       ]
