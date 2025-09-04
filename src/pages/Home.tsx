@@ -60,7 +60,7 @@ const Home = () => {
       {/* CTA Section */}
       <section className="py-32">
         <div className="max-w-4xl mx-auto text-center px-6 lg:px-8">
-          <div className="glass-card p-16 border-minimal scan-line">
+          <div className="glass-card p-16 border-minimal">
             <h2 className="text-3xl font-thin text-gradient mb-8 tracking-tight">
               Let's Build Something
             </h2>
