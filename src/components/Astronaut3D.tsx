@@ -1,13 +1,15 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Sphere, Box, Cylinder } from "@react-three/drei";
-import { useRef } from "react";
-import { Mesh } from "three";
+import { useRef } from 'react';
+
+import { Group } from 'three';
+
+import { Box, Cylinder, OrbitControls, Sphere } from '@react-three/drei';
+import { Canvas, useFrame } from '@react-three/fiber';
 
 const AstronautModel = () => {
-  const groupRef = useRef<any>();
+  const groupRef = useRef<Group>(null);
 
   // Slow rotation animation
-  useFrame((state, delta) => {
+  useFrame((_state, delta) => {
     if (groupRef.current) {
       groupRef.current.rotation.y += delta * 0.1; // Very slow rotation
     }
@@ -17,28 +19,19 @@ const AstronautModel = () => {
     <group ref={groupRef} position={[0, 0, 0]}>
       {/* Helmet */}
       <Sphere position={[0, 1.5, 0]} args={[0.8, 32, 32]}>
-        <meshPhongMaterial 
-          color="#ffffff" 
-          transparent 
-          opacity={0.9} 
-          shininess={100}
-        />
+        <meshPhongMaterial color="#ffffff" transparent opacity={0.9} shininess={100} />
       </Sphere>
-      
+
       {/* Helmet inner reflection */}
       <Sphere position={[0, 1.5, 0]} args={[0.78, 32, 32]}>
-        <meshPhongMaterial 
-          color="#000000" 
-          transparent 
-          opacity={0.1}
-        />
+        <meshPhongMaterial color="#000000" transparent opacity={0.1} />
       </Sphere>
 
       {/* Body */}
       <Cylinder position={[0, 0, 0]} args={[0.6, 0.8, 2, 32]}>
         <meshPhongMaterial color="#ffffff" />
       </Cylinder>
-      
+
       {/* Chest panel */}
       <Box position={[0, 0.3, 0.61]} args={[0.4, 0.6, 0.05]}>
         <meshPhongMaterial color="#000000" />
@@ -86,11 +79,11 @@ const Astronaut3D = () => {
         <ambientLight intensity={0.6} />
         <directionalLight position={[10, 10, 5]} intensity={0.8} />
         <directionalLight position={[-10, -10, -5]} intensity={0.3} />
-        
+
         <AstronautModel />
-        
-        <OrbitControls 
-          enableZoom={false} 
+
+        <OrbitControls
+          enableZoom={false}
           enablePan={false}
           autoRotate={false}
           minPolarAngle={Math.PI / 3}
