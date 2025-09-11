@@ -2,7 +2,7 @@
 
 ## Next Steps
 
-- Create an ascii code sidebar
+-
 
 # Problems
 

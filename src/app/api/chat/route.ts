@@ -2,8 +2,6 @@ import { convertToModelMessages, streamText } from 'ai';
 
 import { groq } from '@ai-sdk/groq';
 
-export const maxDuration = 30;
-
 export async function POST(req: Request): Promise<Response> {
   const { messages } = await req.json();
   const modelMessages = convertToModelMessages(messages ?? []);
@@ -16,5 +14,5 @@ export async function POST(req: Request): Promise<Response> {
     messages: modelMessages,
   });
 
-  return result.toTextStreamResponse();
+  return result.toUIMessageStreamResponse();
 }

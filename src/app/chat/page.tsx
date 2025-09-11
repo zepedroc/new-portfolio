@@ -23,7 +23,11 @@ const getMessageText = (msg: unknown): string => {
 };
 
 export default function ChatPage() {
-  const chat = useChat({});
+  const chat = useChat({
+    onError: (err) => {
+      console.error('Chat error:', err);
+    },
+  });
   const { messages, status } = chat;
   const [input, setInput] = React.useState('');
 
