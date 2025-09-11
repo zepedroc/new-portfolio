@@ -1,18 +1,23 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Card } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
-import { Mail, MapPin, Linkedin, Github, Send, MessageCircle } from "lucide-react";
+'use client';
 
-const Contact = () => {
+import { useState } from 'react';
+
+import { Github, Linkedin, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
+
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+
+import { toast } from '@/hooks/use-toast';
+
+export default function ContactPage() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,41 +30,34 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    toast({
-      title: "Message Sent! 🚀",
-      description: "Thanks for reaching out! I'll get back to you soon.",
-    });
-
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    toast({ title: 'Message Sent! 🚀', description: "Thanks for reaching out! I'll get back to you soon." });
+    setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
   };
 
   const socialLinks = [
     {
-      name: "LinkedIn",
-      url: "https://linkedin.com/in/josemota",
+      name: 'LinkedIn',
+      url: 'https://linkedin.com/in/josemota',
       icon: Linkedin,
-      color: "text-blue-400 hover:text-blue-300",
-      description: "Connect professionally"
+      color: 'text-blue-400 hover:text-blue-300',
+      description: 'Connect professionally',
     },
     {
-      name: "GitHub",
-      url: "https://github.com/josemota",
+      name: 'GitHub',
+      url: 'https://github.com/josemota',
       icon: Github,
-      color: "text-gray-400 hover:text-gray-300",
-      description: "View my code"
+      color: 'text-gray-400 hover:text-gray-300',
+      description: 'View my code',
     },
     {
-      name: "Email",
-      url: "mailto:jose@example.com",
+      name: 'Email',
+      url: 'mailto:jose@example.com',
       icon: Mail,
-      color: "text-primary hover:text-primary/80",
-      description: "Direct email"
-    }
+      color: 'text-primary hover:text-primary/80',
+      description: 'Direct email',
+    },
   ];
 
   return (
@@ -67,12 +65,8 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in-up">
-          <h1 className="text-5xl font-bold text-gradient mb-6">
-            Let's Connect
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            Ready to discuss your next project or just want to say hello?
-          </p>
+          <h1 className="text-5xl font-bold text-gradient mb-6">Let's Connect</h1>
+          <p className="text-xl text-muted-foreground">Ready to discuss your next project or just want to say hello?</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
@@ -80,15 +74,15 @@ const Contact = () => {
           <Card className="glass-card p-8 animate-fade-in-up">
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-foreground mb-2">Send a Message</h2>
-              <p className="text-muted-foreground">
-                Fill out the form below and I'll get back to you as soon as possible.
-              </p>
+              <p className="text-muted-foreground">Fill out the form below and I'll get back to you as soon as possible.</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-foreground">Name</Label>
+                  <Label htmlFor="name" className="text-foreground">
+                    Name
+                  </Label>
                   <Input
                     id="name"
                     name="name"
@@ -100,7 +94,9 @@ const Contact = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-foreground">Email</Label>
+                  <Label htmlFor="email" className="text-foreground">
+                    Email
+                  </Label>
                   <Input
                     id="email"
                     name="email"
@@ -113,9 +109,11 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               <div className="space-y-2">
-                <Label htmlFor="subject" className="text-foreground">Subject</Label>
+                <Label htmlFor="subject" className="text-foreground">
+                  Subject
+                </Label>
                 <Input
                   id="subject"
                   name="subject"
@@ -126,9 +124,11 @@ const Contact = () => {
                   placeholder="What's this about?"
                 />
               </div>
-              
+
               <div className="space-y-2">
-                <Label htmlFor="message" className="text-foreground">Message</Label>
+                <Label htmlFor="message" className="text-foreground">
+                  Message
+                </Label>
                 <Textarea
                   id="message"
                   name="message"
@@ -140,12 +140,8 @@ const Contact = () => {
                   placeholder="Tell me about your project or just say hi!"
                 />
               </div>
-              
-              <Button
-                type="submit"
-                className="w-full bg-primary hover:bg-primary/90 neon-glow"
-                disabled={isSubmitting}
-              >
+
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 neon-glow" disabled={isSubmitting}>
                 {isSubmitting ? (
                   <div className="flex items-center">
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -175,7 +171,7 @@ const Contact = () => {
                     <p className="text-sm text-muted-foreground">I typically respond within 24 hours</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <MapPin className="w-6 h-6 text-primary mt-1" />
                   <div>
@@ -184,7 +180,7 @@ const Contact = () => {
                     <p className="text-sm text-muted-foreground">Open to remote opportunities worldwide</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <MessageCircle className="w-6 h-6 text-primary mt-1" />
                   <div>
@@ -224,8 +220,8 @@ const Contact = () => {
             <Card className="glass-card p-8 border-gradient">
               <h2 className="text-2xl font-bold text-foreground mb-4">Quick Actions</h2>
               <div className="space-y-3">
-                <Button 
-                  className="w-full justify-start bg-primary/20 hover:bg-primary/30 text-primary border-primary/30" 
+                <Button
+                  className="w-full justify-start bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
                   variant="outline"
                   asChild
                 >
@@ -234,8 +230,8 @@ const Contact = () => {
                     Send Direct Email
                   </a>
                 </Button>
-                <Button 
-                  className="w-full justify-start bg-accent/20 hover:bg-accent/30 text-accent border-accent/30" 
+                <Button
+                  className="w-full justify-start bg-accent/20 hover:bg-accent/30 text-accent border-accent/30"
                   variant="outline"
                   asChild
                 >
@@ -251,6 +247,4 @@ const Contact = () => {
       </div>
     </div>
   );
-};
-
-export default Contact;
+}

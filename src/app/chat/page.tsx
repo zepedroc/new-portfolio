@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import { Bot, Send, User } from 'lucide-react';
@@ -20,7 +22,7 @@ const getMessageText = (msg: unknown): string => {
   return '';
 };
 
-const Chat = () => {
+export default function ChatPage() {
   const chat = useChat({});
   const { messages, status } = chat;
   const [input, setInput] = React.useState('');
@@ -51,9 +53,7 @@ const Chat = () => {
               .map((message) => (
                 <div
                   key={message.id}
-                  className={`flex items-start space-x-3 animate-fade-in-up ${
-                    message.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''
-                  }`}
+                  className={`flex items-start space-x-3 animate-fade-in-up ${message.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}
                 >
                   <Avatar className={`${message.role === 'user' ? 'bg-primary' : 'bg-accent'}`}>
                     <AvatarFallback>
@@ -99,6 +99,4 @@ const Chat = () => {
       </div>
     </div>
   );
-};
-
-export default Chat;
+}

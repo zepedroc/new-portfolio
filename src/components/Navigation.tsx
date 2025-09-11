@@ -1,22 +1,26 @@
+'use client';
+
 import { useState } from 'react';
 
 import { Home, Mail, Menu, MessageCircle, User, X } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import type { Route } from 'next';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   const navItems = [
-    { path: '/', label: 'Home', icon: Home },
-    { path: '/experience', label: 'Experience', icon: User },
-    { path: '/chat', label: 'Chat', icon: MessageCircle },
-    { path: '/contact', label: 'Contact', icon: Mail },
+    { path: '/' as Route, label: 'Home', icon: Home },
+    { path: '/experience' as Route, label: 'Experience', icon: User },
+    { path: '/chat' as Route, label: 'Chat', icon: MessageCircle },
+    { path: '/contact' as Route, label: 'Contact', icon: Mail },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border">
@@ -27,7 +31,7 @@ const Navigation = () => {
             {navItems.map(({ path, label, icon: Icon }) => (
               <Link
                 key={path}
-                to={path}
+                href={path}
                 className={`flex items-center space-x-2 px-3 py-2 text-sm font-light transition-all duration-300 ${
                   isActive(path) ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
                 }`}
@@ -58,7 +62,7 @@ const Navigation = () => {
               {navItems.map(({ path, label, icon: Icon }) => (
                 <Link
                   key={path}
-                  to={path}
+                  href={path}
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center space-x-2 px-3 py-2 text-base font-light transition-all duration-300 ${
                     isActive(path)

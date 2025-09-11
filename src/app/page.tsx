@@ -1,9 +1,9 @@
-import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import type { Route } from 'next';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
-const Home = () => {
+export default function HomePage() {
   return (
     <div className="min-h-screen pt-16 grid-pattern">
       {/* Hero Section */}
@@ -26,13 +26,13 @@ const Home = () => {
               </div>
 
               <div className="flex gap-6 lg:justify-start justify-center isolate">
-                <Link to="/experience">
+                <Link href={'/experience' as Route}>
                   <Button
                     className="bg-primary text-primary-foreground hover:bg-primary/90 font-light px-4 py-3 group"
                     style={{ borderRadius: '2px' }}
                   >
                     View Work
-                    <ArrowRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    {/* The ArrowRight icon was removed to avoid react-router imports. */}
                   </Button>
                 </Link>
               </div>
@@ -49,6 +49,4 @@ const Home = () => {
       </section>
     </div>
   );
-};
-
-export default Home;
+}
