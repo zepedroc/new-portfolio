@@ -45,7 +45,7 @@ export default function ChatPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in-up">
-          <h1 className="text-5xl font-bold text-gradient mb-6">Chat with José</h1>
+          <h1 className="text-5xl font-bold text-gradient mb-6">Chat with José's assistant</h1>
         </div>
 
         {/* Chat Interface */}
