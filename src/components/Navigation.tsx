@@ -25,7 +25,9 @@ const Navigation = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-center items-center h-16">
+        <div className="flex items-center h-16 justify-between md:justify-center">
+          {/* Mobile brand (left) */}
+          <div className="md:hidden text-sm font-light text-foreground">José Mota</div>
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map(({ path, label, icon: Icon }) => (
@@ -42,13 +44,13 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu button (right) */}
+          <div className="md:hidden ml-auto">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-50 text-foreground hover:text-primary"
+              className="relative z-50 bg-black text-white hover:bg-black hover:text-white active:bg-black active:text-white focus:bg-black focus:text-white"
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
