@@ -1,7 +1,6 @@
-import { Calendar, ExternalLink, Github, MapPin } from 'lucide-react';
+import { Calendar, MapPin } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 export default function ExperiencePage() {
@@ -29,15 +28,13 @@ export default function ExperiencePage() {
         'LlamaIndex',
         'SQL',
         'Cursor',
-        'SQL Server Management Studio',
+        'Azure Service Bus',
       ],
       achievements: [
         'Enhanced Fiori Elements by developing new frontend components for Fiori Apps (Jun 2022 - Jan 2023)',
         'Developed analytics dashboard and chatbot for Emergn Learning Platform (Jan 2023 - Dec 2023)',
         'Led team development of Praxis by Emergn learning platform for product managers (Jan 2024 - Present)',
         'Contributing to Pulse development - internal web platform for employee management processes (Jul 2025 - Present)',
-        'Created integration tests to enhance project reliability',
-        'Optimized and refactored existing code for better performance',
       ],
     },
     {
@@ -45,11 +42,10 @@ export default function ExperiencePage() {
       company: 'Particle Forward',
       location: 'Remote',
       period: 'May 2022 - Jun 2022',
-      description:
-        'Developed the frontend for União Zoófila website using Contentful as headless CMS. Created reusable components for multiple websites.',
+      description: 'Developed the frontend for União Zoófila website using Contentful as headless CMS.',
       technologies: ['JavaScript', 'React.js', 'TypeScript', 'Next.js', 'Contentful', 'CSS3', 'HTML5'],
       achievements: [
-        'Built complete frontend architecture for União Zoófila website',
+        'Built frontend for União Zoófila website',
         'Integrated Contentful CMS for dynamic content management',
         'Developed independent components for reuse across multiple websites',
       ],
@@ -92,42 +88,22 @@ export default function ExperiencePage() {
       technologies: ['JavaScript', 'React.js', 'Redux', 'Node.js', 'MongoDB', 'MeteorJS', 'SASS', 'HTML5', 'Figma'],
       achievements: [
         'Built complete tutorial widget system for client integration',
-        'Developed entire backend architecture and logic',
-        'Enhanced user onboarding experience across multiple client websites',
         'Created intuitive UI/UX for tutorial creation and management',
       ],
     },
   ];
 
-  const sideProjects = [
-    {
-      title: 'AI-Powered Code Assistant',
-      description:
-        'A VS Code extension that uses machine learning to provide intelligent code suggestions and bug detection.',
-      technologies: ['TypeScript', 'Python', 'TensorFlow', 'VS Code API'],
-      status: 'Active',
-      github: 'https://github.com/josemota/ai-code-assistant',
-      demo: 'https://marketplace.visualstudio.com/items?itemName=josemota.ai-assistant',
-    },
-    {
-      title: 'Robotic Arm Controller',
-      description:
-        'Web-based interface for controlling a 6-DOF robotic arm with real-time feedback and computer vision integration.',
-      technologies: ['React', 'WebRTC', 'Python', 'OpenCV', 'Arduino'],
-      status: 'Beta',
-      github: 'https://github.com/josemota/robotic-arm-controller',
-      demo: 'https://robot-controller.josemota.dev',
-    },
-    {
-      title: 'Neural Network Visualizer',
-      description:
-        'Interactive web application for visualizing and understanding neural network architectures and training processes.',
-      technologies: ['D3.js', 'WebGL', 'Python', 'FastAPI', 'PyTorch'],
-      status: 'Completed',
-      github: 'https://github.com/josemota/neural-viz',
-      demo: 'https://neural-viz.josemota.dev',
-    },
-  ];
+  // const sideProjects = [
+  //   {
+  //     title: 'AI-Powered Code Assistant',
+  //     description:
+  //       'A VS Code extension that uses machine learning to provide intelligent code suggestions and bug detection.',
+  //     technologies: ['TypeScript', 'Python', 'TensorFlow', 'VS Code API'],
+  //     status: 'Active',
+  //     github: 'https://github.com/josemota/ai-code-assistant',
+  //     demo: 'https://marketplace.visualstudio.com/items?itemName=josemota.ai-assistant',
+  //   },
+  // ];
 
   return (
     <div className="min-h-screen pt-16">
@@ -135,7 +111,7 @@ export default function ExperiencePage() {
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <h1 className="text-5xl font-bold text-gradient mb-6">Experience & Projects</h1>
-          <p className="text-xl text-muted-foreground">A journey through my professional experience and passion projects</p>
+          <p className="text-xl text-muted-foreground">A journey through my professional experience</p>
         </div>
 
         {/* Work Experience */}
@@ -196,7 +172,7 @@ export default function ExperiencePage() {
         </section>
 
         {/* Side Projects */}
-        <section>
+        {/* <section>
           <h2 className="text-3xl font-bold text-foreground mb-8 flex items-center">
             <Github className="mr-3 text-accent" />
             Side Projects
@@ -257,7 +233,7 @@ export default function ExperiencePage() {
               </Card>
             ))}
           </div>
-        </section>
+        </section> */}
       </div>
     </div>
   );
