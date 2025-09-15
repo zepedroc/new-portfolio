@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Bot, Send, User } from 'lucide-react';
+import { Bot, RotateCcw, Send, User } from 'lucide-react';
 
 import { useChat } from '@ai-sdk/react';
 
@@ -23,13 +23,18 @@ const getMessageText = (msg: unknown): string => {
 };
 
 export default function ChatPage() {
+  const [chatId, setChatId] = React.useState<string>(() =>
+    typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+  );
   const chat = useChat({
+    id: chatId,
     onError: (err) => {
       console.error('Chat error:', err);
     },
   });
   const { messages, status } = chat;
   const [input, setInput] = React.useState('');
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const isLoading = status === 'submitted' || status === 'streaming';
 
@@ -40,16 +45,26 @@ export default function ChatPage() {
     setInput('');
   };
 
+  const handleReset = () => {
+    setChatId(
+      typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+    );
+    setInput('');
+  };
+
   return (
-    <div className="min-h-screen pt-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="min-h-screen pt-4 md:pt-8 xl:pt-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in-up">
           <h1 className="text-5xl font-bold text-gradient mb-6">Chat with José's assistant</h1>
         </div>
 
         {/* Chat Interface */}
-        <Card className="glass-card h-[600px] flex flex-col">
+        <Card
+          className="glass-card h-[600px] flex flex-col border border-white/90 rounded-t-lg"
+          style={{ border: '1px solid' }}
+        >
           {/* Messages Area */}
           <div className="flex-1 p-6 overflow-y-auto space-y-4">
             {messages
@@ -80,13 +95,21 @@ export default function ChatPage() {
           </div>
 
           {/* Input Area */}
-          <div className="border-t border-border/50 p-6">
+          <div
+            className="border-t border-white p-6"
+            onClick={(e) => {
+              const target = e.target as HTMLElement;
+              if (target.closest('button')) return;
+              inputRef.current?.focus();
+            }}
+          >
             <form onSubmit={handleSubmit} className="flex space-x-3">
               <Input
+                ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 bg-background/50 border-border/50 focus:border-primary"
+                className="flex-1 bg-background/50 border-border/50 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
                 autoFocus
               />
               <Button
@@ -96,6 +119,17 @@ export default function ChatPage() {
                 aria-label="Send"
               >
                 <Send className="w-4 h-4" />
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                onClick={handleReset}
+                className="border-white/60 text-white"
+                aria-label="Start new chat"
+                title="Start new chat"
+              >
+                <RotateCcw className="w-4 h-4" />
               </Button>
             </form>
           </div>
