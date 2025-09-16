@@ -3,6 +3,8 @@
 import React from 'react';
 
 import { Bot, RotateCcw, Send, User } from 'lucide-react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 import { useChat } from '@ai-sdk/react';
 
@@ -87,7 +89,7 @@ export default function ChatPage() {
                           : 'bg-secondary text-secondary-foreground'
                       }`}
                     >
-                      <p className="text-sm leading-relaxed">{getMessageText(message)}</p>
+                      <Markdown remarkPlugins={[remarkGfm]}>{getMessageText(message)}</Markdown>
                     </div>
                   </div>
                 </div>
