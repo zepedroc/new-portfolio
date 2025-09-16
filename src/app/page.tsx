@@ -32,7 +32,6 @@ export default function HomePage() {
                     style={{ borderRadius: '2px' }}
                   >
                     View Work
-                    {/* The ArrowRight icon was removed to avoid react-router imports. */}
                   </Button>
                 </Link>
               </div>
