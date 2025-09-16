@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Github, Linkedin, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
+import { Github, Linkedin, Mail, Send } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -39,24 +39,24 @@ export default function ContactPage() {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/josemota',
+      url: 'https://www.linkedin.com/in/josé-pedro-mota-7395a6191/',
       icon: Linkedin,
-      color: 'text-blue-400 hover:text-blue-300',
+      color: 'text-primary hover:text-primary/80',
       description: 'Connect professionally',
     },
     {
       name: 'GitHub',
-      url: 'https://github.com/josemota',
+      url: 'https://github.com/zepedroc',
       icon: Github,
-      color: 'text-gray-400 hover:text-gray-300',
+      color: 'text-primary hover:text-primary/80',
       description: 'View my code',
     },
     {
       name: 'Email',
-      url: 'mailto:jose@example.com',
+      url: 'mailto:zepedrocm@hotmail.com',
       icon: Mail,
       color: 'text-primary hover:text-primary/80',
-      description: 'Direct email',
+      description: 'Send direct email',
     },
   ];
 
@@ -157,42 +157,8 @@ export default function ContactPage() {
             </form>
           </Card>
 
-          {/* Contact Info & Social Links */}
+          {/* Social Links */}
           <div className="space-y-8 animate-slide-in-right">
-            {/* Contact Info */}
-            <Card className="glass-card p-8">
-              <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <Mail className="w-6 h-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-foreground">Email</h3>
-                    <p className="text-muted-foreground">jose@example.com</p>
-                    <p className="text-sm text-muted-foreground">I typically respond within 24 hours</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <MapPin className="w-6 h-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-foreground">Location</h3>
-                    <p className="text-muted-foreground">San Francisco, CA</p>
-                    <p className="text-sm text-muted-foreground">Open to remote opportunities worldwide</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <MessageCircle className="w-6 h-6 text-primary mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-foreground">Response Time</h3>
-                    <p className="text-muted-foreground">Usually within 24 hours</p>
-                    <p className="text-sm text-muted-foreground">Faster for urgent project inquiries</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            {/* Social Links */}
             <Card className="glass-card p-8">
               <h2 className="text-2xl font-bold text-foreground mb-6">Connect on Social</h2>
               <div className="space-y-4">
@@ -213,33 +179,6 @@ export default function ContactPage() {
                     </div>
                   </a>
                 ))}
-              </div>
-            </Card>
-
-            {/* Quick Actions */}
-            <Card className="glass-card p-8 border-gradient">
-              <h2 className="text-2xl font-bold text-foreground mb-4">Quick Actions</h2>
-              <div className="space-y-3">
-                <Button
-                  className="w-full justify-start bg-primary/20 hover:bg-primary/30 text-primary border-primary/30"
-                  variant="outline"
-                  asChild
-                >
-                  <a href="mailto:jose@example.com">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Send Direct Email
-                  </a>
-                </Button>
-                <Button
-                  className="w-full justify-start bg-accent/20 hover:bg-accent/30 text-accent border-accent/30"
-                  variant="outline"
-                  asChild
-                >
-                  <a href="https://linkedin.com/in/josemota" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="w-4 h-4 mr-2" />
-                    Connect on LinkedIn
-                  </a>
-                </Button>
               </div>
             </Card>
           </div>
