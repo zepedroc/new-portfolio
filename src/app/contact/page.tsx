@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 
-import { Github, Linkedin, Mail, Send } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -40,14 +41,14 @@ export default function ContactPage() {
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/josé-pedro-mota-7395a6191/',
-      icon: Linkedin,
+      icon: FaLinkedin,
       color: 'text-primary hover:text-primary/80',
       description: 'Connect professionally',
     },
     {
       name: 'GitHub',
       url: 'https://github.com/zepedroc',
-      icon: Github,
+      icon: FaGithub,
       color: 'text-primary hover:text-primary/80',
       description: 'View my code',
     },

@@ -6,7 +6,6 @@
 - Add markdown support to the chat
 - On chat page, start by making an introduction
 - Take care of contact form
-- Latest dependencies
 - Website favicon
 
 # Problems
