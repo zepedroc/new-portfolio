@@ -3,7 +3,6 @@
 ## Next Steps
 
 - On chat page, start by making an introduction
-- Take care of contact form
 - Website favicon
 
 # Problems
