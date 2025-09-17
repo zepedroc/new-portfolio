@@ -9,6 +9,10 @@ import '@/index.css';
 export const metadata = {
   title: 'José Mota',
   description: 'Portfolio',
+  icons: {
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    apple: [{ url: '/favicon.svg' }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

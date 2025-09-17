@@ -2,11 +2,11 @@
 
 ## Next Steps
 
-- Website favicon
+-
 
 # Problems
 
-- Sometimes I can't see the most recent message on chat, make it scroll to the bottom
+-
 
 # Future Improvements
 
