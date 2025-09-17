@@ -1,39 +1,41 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Menu, X, Home, User, MessageCircle, Mail } from "lucide-react";
+'use client';
+
+import { useState } from 'react';
+
+import { Home, Mail, Menu, MessageCircle, User, X } from 'lucide-react';
+import type { Route } from 'next';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   const navItems = [
-    { path: "/", label: "Home", icon: Home },
-    { path: "/experience", label: "Experience", icon: User },
-    { path: "/chat", label: "Chat", icon: MessageCircle },
-    { path: "/contact", label: "Contact", icon: Mail },
+    { path: '/' as Route, label: 'Home', icon: Home },
+    { path: '/experience' as Route, label: 'Experience', icon: User },
+    { path: '/chat' as Route, label: 'Chat', icon: MessageCircle },
+    { path: '/contact' as Route, label: 'Contact', icon: Mail },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => pathname === path;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center">
-            <span className="text-xl font-light tracking-wider text-foreground">JOSÉ MOTA</span>
-          </Link>
-
+        <div className="flex items-center h-16 justify-between md:justify-center">
+          {/* Mobile brand (left) */}
+          <div className="md:hidden text-sm font-light text-foreground">José Mota</div>
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map(({ path, label, icon: Icon }) => (
               <Link
                 key={path}
-                to={path}
+                href={path}
                 className={`flex items-center space-x-2 px-3 py-2 text-sm font-light transition-all duration-300 ${
-                  isActive(path)
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
+                  isActive(path) ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -42,13 +44,13 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
+          {/* Mobile menu button (right) */}
+          <div className="md:hidden ml-auto">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="relative z-50 text-foreground hover:text-primary"
+              className="relative z-50 bg-black text-white hover:bg-black hover:text-white active:bg-black active:text-white focus:bg-black focus:text-white"
             >
               {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </Button>
@@ -62,12 +64,12 @@ const Navigation = () => {
               {navItems.map(({ path, label, icon: Icon }) => (
                 <Link
                   key={path}
-                  to={path}
+                  href={path}
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center space-x-2 px-3 py-2 text-base font-light transition-all duration-300 ${
                     isActive(path)
-                      ? "text-primary bg-secondary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ? 'text-primary bg-secondary'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
