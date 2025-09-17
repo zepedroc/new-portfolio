@@ -23,6 +23,9 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const formspreeFormId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
+  const FORMSPREE_ENDPOINT = formspreeFormId ? `https://formspree.io/f/${formspreeFormId}` : undefined;
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -30,11 +33,52 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!FORMSPREE_ENDPOINT) {
+      toast({
+        title: 'Configuration error',
+        description: 'Missing NEXT_PUBLIC_FORMSPREE_FORM_ID. Please configure your Formspree form ID.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    toast({ title: 'Message Sent! 🚀', description: "Thanks for reaching out! I'll get back to you soon." });
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          _replyto: formData.email,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: 'Message Sent! 🚀',
+          description: "Thanks for reaching out! I'll get back to you soon.",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: 'Something went wrong',
+        description: 'Your message could not be sent. Please try again later.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
