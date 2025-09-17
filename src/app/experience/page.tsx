@@ -67,7 +67,7 @@ export default function ExperiencePage() {
     {
       title: 'Frontend Developer',
       company: 'Celfinet (via Helppier)',
-      location: 'Remote',
+      location: 'Porto, Portugal',
       period: 'Aug 2019 - Nov 2019',
       description:
         'Re-structured GeoMap Platform UI to work with Redux as state manager. Created new components using MaterialUI for improved user interface.',
@@ -81,7 +81,7 @@ export default function ExperiencePage() {
     {
       title: 'Fullstack Developer',
       company: 'Helppier',
-      location: 'Remote',
+      location: 'Porto, Portugal',
       period: 'Feb 2018 - Nov 2020',
       description:
         'Developed a step-by-step tutorial widget for client websites, enhancing existing features and building new screens. Created complete backend logic for the tutorial system.',

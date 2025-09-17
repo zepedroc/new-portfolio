@@ -1,73 +1,102 @@
-# Welcome to your Lovable project
+## José Mota — Portfolio
 
-## Project info
+Minimal, black-and-white portfolio built with Next.js App Router, React, and Tailwind CSS. It features a chat assistant powered by Groq via the AI SDK, a contact form (Formspree), and an experience timeline.
 
-**URL**: https://lovable.dev/projects/a1e4454e-aa7b-4e93-b342-e4d7b7e09ba3
+### Tech stack
 
-## How can I edit this code?
+- **Framework**: Next.js 15 (App Router, TypeScript)
+- **Runtime**: React 19
+- **Styling**: Tailwind CSS v4, custom utilities in `src/index.css`
+- **UI**: Radix primitives, custom UI components in `src/components/ui`, Sonner toasts, lucide-react icons
+- **AI**: `ai` (Vercel AI SDK) + `@ai-sdk/groq` (server route at `/api/chat`)
+- **Analytics**: `@vercel/analytics`
 
-There are several ways of editing your application.
+### Key features
 
-**Use Lovable**
+- **Home**: Hero with minimalist aesthetic
+- **Experience**: Work history with technologies and achievements
+- **Chat**: Conversational assistant about José (`/chat` → `/api/chat`)
+- **Contact**: Formspree-powered contact form with toasts
+- **Global navigation** and glass-style UI
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a1e4454e-aa7b-4e93-b342-e4d7b7e09ba3) and start prompting.
+## Getting started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18.18+ (or 20+ recommended)
+- npm (or your preferred package manager)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+npm install
+```
 
-Follow these steps:
+### Environment variables
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Create a `.env.local` file at the project root:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+```bash
+# Required for the chat assistant (server-side)
+GROQ_API_KEY=your_groq_api_key
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Required for the contact form (client-side)
+NEXT_PUBLIC_FORMSPREE_FORM_ID=your_formspree_form_id
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Notes:
+
+- The chat route uses Groq via `@ai-sdk/groq` with model `openai/gpt-oss-120b`. An active `GROQ_API_KEY` is required.
+- The contact page posts to `https://formspree.io/f/<id>` using `NEXT_PUBLIC_FORMSPREE_FORM_ID`.
+
+### Development
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Runs the Next.js dev server with Turbo mode.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build & start
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+npm start
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Lint & typecheck
 
-## What technologies are used for this project?
+```bash
+npm run lint
+npm run tsc
+```
 
-This project is built with:
+## Scripts
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **dev**: `next dev --turbo`
+- **build**: `next build`
+- **start**: `next start`
+- **lint**: `eslint .`
+- **tsc**: `tsc`
+- **knip**: `knip`
 
-## How can I deploy this project?
+## Project structure (selected)
 
-Simply open [Lovable](https://lovable.dev/projects/a1e4454e-aa7b-4e93-b342-e4d7b7e09ba3) and click on Share -> Publish.
+```
+src/
+  app/
+    page.tsx              # Home
+    experience/page.tsx   # Experience & projects
+    chat/page.tsx         # Chat UI
+    api/chat/route.ts     # Chat API (Groq via AI SDK)
+    contact/page.tsx      # Contact form (Formspree)
+    layout.tsx            # Global layout, navigation, analytics, toasters
+  components/
+    Navigation.tsx
+    ui/                   # Button, Card, Input, etc.
+  index.css               # Tailwind v4 theme and utilities
+```
 
-## Can I connect a custom domain to my Lovable project?
+## Deployment
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Works out of the box on platforms that support Next.js (e.g., Vercel). Ensure `GROQ_API_KEY` and `NEXT_PUBLIC_FORMSPREE_FORM_ID` are set in your environment.
