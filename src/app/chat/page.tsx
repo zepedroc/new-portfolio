@@ -37,8 +37,18 @@ export default function ChatPage() {
   const { messages, status } = chat;
   const [input, setInput] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+  const previousMessageCountRef = React.useRef<number>(0);
 
   const isLoading = status === 'submitted' || status === 'streaming';
+  const visibleMessages = React.useMemo(() => messages.filter((m) => m.role !== 'system'), [messages]);
+
+  React.useEffect(() => {
+    if (!messagesEndRef.current) return;
+    const behavior: ScrollBehavior = previousMessageCountRef.current === 0 ? 'auto' : 'smooth';
+    messagesEndRef.current.scrollIntoView({ behavior, block: 'end' });
+    previousMessageCountRef.current = visibleMessages.length;
+  }, [messages, visibleMessages.length]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,31 +79,47 @@ export default function ChatPage() {
         >
           {/* Messages Area */}
           <div className="flex-1 p-6 overflow-y-auto space-y-4">
-            {messages
-              .filter((m) => m.role !== 'system')
-              .map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex items-start space-x-3 animate-fade-in-up ${message.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}
-                >
-                  <Avatar className={`${message.role === 'user' ? 'bg-primary' : 'bg-accent'}`}>
-                    <AvatarFallback>
-                      {message.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className={`flex flex-col max-w-[70%] ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
-                    <div
-                      className={`px-4 py-3 rounded-lg ${
-                        message.role === 'user'
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-secondary text-secondary-foreground'
-                      }`}
-                    >
-                      <Markdown remarkPlugins={[remarkGfm]}>{getMessageText(message)}</Markdown>
-                    </div>
+            {/* Persistent welcome bubble at the top */}
+            <div className="flex items-start space-x-3 animate-fade-in-up">
+              <Avatar className="bg-accent">
+                <AvatarFallback>
+                  <Bot className="w-4 h-4" />
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col max-w-[70%] items-start">
+                <div className="px-4 py-3 rounded-lg bg-secondary text-secondary-foreground">
+                  <Markdown remarkPlugins={[remarkGfm]}>
+                    Hello, this is José's assistant! What can I help you with today?
+                  </Markdown>
+                </div>
+              </div>
+            </div>
+
+            {/* Conversation messages */}
+            {visibleMessages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex items-start space-x-3 animate-fade-in-up ${message.role === 'user' ? 'flex-row-reverse space-x-reverse' : ''}`}
+              >
+                <Avatar className={`${message.role === 'user' ? 'bg-primary' : 'bg-accent'}`}>
+                  <AvatarFallback>
+                    {message.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+                  </AvatarFallback>
+                </Avatar>
+                <div className={`flex flex-col max-w-[70%] ${message.role === 'user' ? 'items-end' : 'items-start'}`}>
+                  <div
+                    className={`px-4 py-3 rounded-lg ${
+                      message.role === 'user'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-secondary text-secondary-foreground'
+                    }`}
+                  >
+                    <Markdown remarkPlugins={[remarkGfm]}>{getMessageText(message)}</Markdown>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Input Area */}

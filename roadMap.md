@@ -2,12 +2,11 @@
 
 ## Next Steps
 
-- On chat page, start by making an introduction
 - Website favicon
 
 # Problems
 
--
+- Sometimes I can't see the most recent message on chat, make it scroll to the bottom
 
 # Future Improvements
 
