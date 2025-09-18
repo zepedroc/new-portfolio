@@ -15,7 +15,7 @@ export default function HomePage() {
                 <h1 className="text-7xl md:text-8xl font-thin text-gradient tracking-tighter">José Mota</h1>
                 <div className="space-y-2">
                   <p className="text-xl text-muted-foreground font-light">Software Developer</p>
-                  <div className="h-px w-30 bg-foreground lg:mx-0 mx-auto"></div>
+                  <div className="h-px w-28 bg-foreground lg:mx-0 mx-auto"></div>
                 </div>
               </div>
 
