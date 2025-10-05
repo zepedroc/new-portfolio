@@ -35,28 +35,18 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       headers,
     });
 
-    // Get the response data and preserve content type
-    const contentType = response.headers.get('content-type');
+    // Forward response as-is, preserving status and headers
+    const forwardedHeaders = new Headers();
+    response.headers.forEach((value, key) => {
+      // Optionally filter hop-by-hop headers; preserve content-type and others
+      if (key.toLowerCase() === 'transfer-encoding') return;
+      forwardedHeaders.set(key, value);
+    });
 
-    if (contentType?.includes('application/json')) {
-      // Return JSON response
-      const data = await response.json();
-      return NextResponse.json(data, {
-        status: response.status,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-    } else {
-      // Return non-JSON response (text, HTML, etc.) with original content type
-      const data = await response.text();
-      return new NextResponse(data, {
-        status: response.status,
-        headers: {
-          'Content-Type': contentType || 'text/plain',
-        },
-      });
-    }
+    return new NextResponse(response.body, {
+      status: response.status,
+      headers: forwardedHeaders,
+    });
   } catch (error) {
     console.error('[FastAPI Proxy] Error:', error);
     return NextResponse.json(
