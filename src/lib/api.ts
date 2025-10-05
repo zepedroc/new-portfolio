@@ -17,7 +17,7 @@ type RequestOptions = {
  * // GET request to specific endpoint
  * const users = await apiRequest('users/123');
  */
-export async function apiRequest<T = any>(endpoint: string, options: RequestOptions = {}): Promise<T> {
+export async function apiRequest<T = unknown>(endpoint: string, options: RequestOptions = {}): Promise<T> {
   const { headers = {} } = options;
 
   // Remove leading slash if present
@@ -50,5 +50,5 @@ export async function apiRequest<T = any>(endpoint: string, options: RequestOpti
 
 // Convenience API object (currently only supports GET)
 export const api = {
-  get: <T = any>(endpoint: string, headers?: Record<string, string>) => apiRequest<T>(endpoint, { headers }),
+  get: <T = unknown>(endpoint: string, headers?: Record<string, string>) => apiRequest<T>(endpoint, { headers }),
 };

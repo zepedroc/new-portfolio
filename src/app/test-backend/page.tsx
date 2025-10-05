@@ -11,7 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { api } from '@/lib/api';
 
 export default function TestBackendPage() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,7 +22,7 @@ export default function TestBackendPage() {
 
     try {
       // Call the root endpoint of your FastAPI backend
-      const result = await api.get('');
+      const result = await api.get<Record<string, unknown>>('');
       setData(result);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to connect to backend');
