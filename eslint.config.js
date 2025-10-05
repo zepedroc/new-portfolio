@@ -5,10 +5,11 @@ import tseslint from 'typescript-eslint';
 
 import js from '@eslint/js';
 
-export default tseslint.config(
-  { ignores: ['dist', 'node_modules', '.next', 'public'] },
+export default [
+  { ignores: ['dist', 'node_modules', '.next', 'public', 'next-env.d.ts'] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -23,4 +24,4 @@ export default tseslint.config(
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
-);
+];
