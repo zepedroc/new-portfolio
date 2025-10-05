@@ -48,7 +48,7 @@ export default function TestBackendPage() {
         <Card>
           <CardHeader>
             <CardTitle>Backend Connection Test</CardTitle>
-            <CardDescription>Click the button below to test the connection to your FastAPI backend</CardDescription>
+            <CardDescription>Click the button below to test the connection to the FastAPI backend</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <Button onClick={testConnection} disabled={loading} className="w-full">
