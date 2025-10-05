@@ -4,12 +4,13 @@ import { NextRequest, NextResponse } from 'next/server';
 // Usage: Call /api/backend or /api/backend/{endpoint} and it will forward to FastAPI
 // The double brackets [[...path]] make this an optional catch-all route
 
-export async function GET(request: NextRequest, { params }: { params: { path?: string[] } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
   const FASTAPI_URL = process.env.FASTAPI_URL || 'http://localhost:8000';
 
   // Construct the full path to FastAPI endpoint
   // params.path will be undefined for root, or an array for nested paths
-  const endpoint = params.path && params.path.length > 0 ? params.path.join('/') : '';
+  const resolvedParams = await params;
+  const endpoint = resolvedParams.path && resolvedParams.path.length > 0 ? resolvedParams.path.join('/') : '';
   const url = endpoint ? `${FASTAPI_URL}/${endpoint}` : FASTAPI_URL;
 
   // Get query parameters from the original request
