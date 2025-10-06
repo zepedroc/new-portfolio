@@ -55,3 +55,48 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     );
   }
 }
+
+// Forward POST requests to FastAPI with JSON body
+export async function POST(request: NextRequest, { params }: { params: Promise<{ path?: string[] }> }) {
+  const FASTAPI_URL = process.env.FASTAPI_URL || 'http://localhost:8000';
+
+  const resolvedParams = await params;
+  const endpoint = resolvedParams.path && resolvedParams.path.length > 0 ? resolvedParams.path.join('/') : '';
+  const url = endpoint ? `${FASTAPI_URL}/${endpoint}` : FASTAPI_URL;
+
+  try {
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+    };
+
+    const authHeader = request.headers.get('authorization');
+    if (authHeader) {
+      headers['Authorization'] = authHeader;
+    }
+
+    const body = await request.text();
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers,
+      body,
+    });
+
+    const forwardedHeaders = new Headers();
+    response.headers.forEach((value, key) => {
+      if (key.toLowerCase() === 'transfer-encoding') return;
+      forwardedHeaders.set(key, value);
+    });
+
+    return new NextResponse(response.body, {
+      status: response.status,
+      headers: forwardedHeaders,
+    });
+  } catch (error) {
+    console.error('[FastAPI Proxy] Error (POST):', error);
+    return NextResponse.json(
+      { error: 'Failed to connect to backend', details: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 },
+    );
+  }
+}
