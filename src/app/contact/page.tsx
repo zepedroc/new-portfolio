@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Mail, Send } from 'lucide-react';
+import { Loader2, Mail, Send, Sparkles } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import { Button } from '@/components/ui/button';
@@ -12,6 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 
 import { toast } from '@/hooks/use-toast';
+import { api } from '@/lib/api';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -22,6 +23,7 @@ export default function ContactPage() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isDrafting, setIsDrafting] = useState(false);
 
   const formspreeFormId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
   const FORMSPREE_ENDPOINT = formspreeFormId ? `https://formspree.io/f/${formspreeFormId}` : undefined;
@@ -78,6 +80,39 @@ export default function ContactPage() {
       });
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const isDraftEnabled = Boolean(formData.name && formData.email && formData.subject);
+
+  const handleCreateDraft = async () => {
+    if (!isDraftEnabled || isDrafting) return;
+    setIsDrafting(true);
+    try {
+      const result = await api.post<{ draft: string }, { name: string; email: string; subject: string }>(
+        'api/contact/draft',
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+        },
+      );
+
+      const draftMessage = (result as { draft?: string }).draft || '';
+      if (draftMessage) {
+        setFormData((prev) => ({
+          ...prev,
+          message: draftMessage,
+        }));
+        toast({ title: 'Draft created', description: 'Draft message inserted into the form.' });
+      } else {
+        toast({ title: 'No draft returned', description: 'The server did not return a draft.', variant: 'destructive' });
+      }
+    } catch (error) {
+      console.error('Error creating draft:', error);
+      toast({ title: 'Draft failed', description: 'Could not create a draft. Please try again.', variant: 'destructive' });
+    } finally {
+      setIsDrafting(false);
     }
   };
 
@@ -171,9 +206,27 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message" className="text-foreground">
-                  Message
-                </Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="message" className="text-foreground">
+                    Message
+                  </Label>
+                  <span
+                    className="inline-block"
+                    title={!isDraftEnabled ? 'Fill name, email, and subject to create a draft' : 'Create a draft message'}
+                  >
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="h-9 w-9"
+                      onClick={handleCreateDraft}
+                      disabled={!isDraftEnabled || isDrafting}
+                      aria-label="Create draft"
+                    >
+                      {isDrafting ? <Loader2 className="h-4 w-4 animate-spin" /> : <Sparkles className="h-4 w-4" />}
+                    </Button>
+                  </span>
+                </div>
                 <Textarea
                   id="message"
                   name="message"
