@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Loader2, Mail, Send, Sparkles } from 'lucide-react';
+import { Loader2, Mail, Send, Sparkles, Wand2 } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 import { Button } from '@/components/ui/button';
@@ -24,6 +24,9 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDrafting, setIsDrafting] = useState(false);
+  const [isImproving, setIsImproving] = useState(false);
+  const [improveComment, setImproveComment] = useState('');
+  const [hasDraft, setHasDraft] = useState(false);
 
   const formspreeFormId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
   const FORMSPREE_ENDPOINT = formspreeFormId ? `https://formspree.io/f/${formspreeFormId}` : undefined;
@@ -68,6 +71,7 @@ export default function ContactPage() {
           description: "Thanks for reaching out! I'll get back to you soon.",
         });
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setHasDraft(false);
       } else {
         throw new Error('Failed to send message');
       }
@@ -84,6 +88,7 @@ export default function ContactPage() {
   };
 
   const isDraftEnabled = Boolean(formData.name && formData.email && formData.subject);
+  const isImproveEnabled = Boolean(hasDraft && formData.message && improveComment);
 
   const handleCreateDraft = async () => {
     if (!isDraftEnabled || isDrafting) return;
@@ -104,6 +109,7 @@ export default function ContactPage() {
           ...prev,
           message: draftMessage,
         }));
+        setHasDraft(true);
         toast({ title: 'Draft created', description: 'Draft message inserted into the form.' });
       } else {
         toast({ title: 'No draft returned', description: 'The server did not return a draft.', variant: 'destructive' });
@@ -113,6 +119,39 @@ export default function ContactPage() {
       toast({ title: 'Draft failed', description: 'Could not create a draft. Please try again.', variant: 'destructive' });
     } finally {
       setIsDrafting(false);
+    }
+  };
+
+  const handleImproveDraft = async () => {
+    if (!isImproveEnabled || isImproving) return;
+    setIsImproving(true);
+    try {
+      const result = await api.post<{ draft: string }, { draft: string; comment: string }>('api/contact/draft/improve', {
+        draft: formData.message,
+        comment: improveComment,
+      });
+
+      const improved = (result as { draft?: string }).draft || '';
+      if (improved) {
+        setFormData((prev) => ({ ...prev, message: improved }));
+        setImproveComment('');
+        toast({ title: 'Draft improved', description: 'Your draft has been refined.' });
+      } else {
+        toast({
+          title: 'No improvement returned',
+          description: 'The server did not return a draft.',
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      console.error('Error improving draft:', error);
+      toast({
+        title: 'Improve failed',
+        description: 'Could not improve the draft. Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsImproving(false);
     }
   };
 
@@ -237,6 +276,49 @@ export default function ContactPage() {
                   className="bg-background/50 border-border/50 focus:border-primary resize-none"
                   placeholder="Tell me about your project or just say hi!"
                 />
+                {hasDraft && formData.message && (
+                  <div className="flex items-center gap-2">
+                    <Input
+                      id="improve-comment"
+                      name="improve-comment"
+                      value={improveComment}
+                      onChange={(e) => setImproveComment(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          if (isImproveEnabled && !isImproving) {
+                            handleImproveDraft();
+                          }
+                        }
+                      }}
+                      placeholder="Let me know how to improve the draft (tone, length, details...)"
+                      className="bg-background/50 border-border/50 focus:border-primary"
+                    />
+                    <span
+                      className="inline-block"
+                      title={
+                        !formData.message
+                          ? 'Create or paste a draft message first'
+                          : !improveComment
+                            ? 'Add a comment describing the changes you want'
+                            : 'Improve the current draft'
+                      }
+                    >
+                      <Button
+                        type="button"
+                        variant="secondary"
+                        size="icon"
+                        className="h-9 w-9"
+                        onClick={handleImproveDraft}
+                        disabled={!isImproveEnabled || isImproving}
+                        aria-label="Improve draft"
+                      >
+                        {isImproving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Wand2 className="h-4 w-4" />}
+                      </Button>
+                    </span>
+                  </div>
+                )}
               </div>
 
               <Button type="submit" className="w-full bg-primary hover:bg-primary/90 neon-glow" disabled={isSubmitting}>
