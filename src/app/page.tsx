@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen pt-16 grid-pattern">
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden">
+      <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] flex items-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="space-y-12 animate-fade-in-up lg:text-left text-center mx-auto lg:mx-0">
@@ -38,7 +38,7 @@ export default function HomePage() {
             </div>
 
             <div
-              className="relative h-96 lg:h-[600px] animate-slide-in-right hidden lg:block transform-gpu"
+              className="relative h-80 md:h-96 lg:h-[520px] xl:h-[600px] animate-slide-in-right hidden lg:block transform-gpu"
               style={{ willChange: 'transform' }}
             >
               <img src="/assets/astro.png" alt="Astronaut" className="w-full h-full object-contain" />
