@@ -65,8 +65,8 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="min-h-screen pt-4 md:pt-8 xl:pt-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
+    <div className="min-h-screen pt-16">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col justify-center py-4">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in-up">
           <h1 className="text-5xl font-bold text-gradient mb-6">Chat with José's assistant</h1>
@@ -74,11 +74,11 @@ export default function ChatPage() {
 
         {/* Chat Interface */}
         <Card
-          className="glass-card h-[600px] flex flex-col border border-white/90 rounded-t-lg"
+          className="glass-card h-[480px] md:h-[500px] lg:h-[520px] xl:h-[580px] flex flex-col border border-white/90 rounded-t-lg"
           style={{ border: '1px solid' }}
         >
           {/* Messages Area */}
-          <div className="flex-1 p-6 overflow-y-auto space-y-4">
+          <div className="flex-1 p-5 overflow-y-auto space-y-3">
             {/* Persistent welcome bubble at the top */}
             <div className="flex items-start space-x-3 animate-fade-in-up">
               <Avatar className="bg-accent">
@@ -124,7 +124,7 @@ export default function ChatPage() {
 
           {/* Input Area */}
           <div
-            className="border-t border-white p-6"
+            className="border-t border-white p-5"
             onClick={(e) => {
               const target = e.target as HTMLElement;
               if (target.closest('button')) return;

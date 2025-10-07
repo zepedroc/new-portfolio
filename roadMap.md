@@ -6,7 +6,7 @@
 
 # Problems
 
-- Adjust sizes of the website for laptop
+-
 
 # Future Improvements
 
